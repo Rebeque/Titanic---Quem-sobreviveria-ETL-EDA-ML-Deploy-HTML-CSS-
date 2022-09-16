@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<style>
+    form {
+        margin: auto;
+        width: 35%;
+    }.result {
+         margin: auto;
+         width: 35%;
+         border: 1px solid #ccc;
+     }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Titanic - Você Sobreviveria?</title>
+</head>
+<body>
+
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Classe de Embarque:
+        <input name="Pclass" type="number" required>
+        <br>
+        <br> Sex_female:
+        <input name="Sex_female" type="number" required>
+        <br>
+        <br> Sex_male:
+        <input name="Sex_male" type="number" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+
+<div class="result">
+    {% if result %}
+    {% for variable, value in original_input.items() %}
+    <b>{{ variable }}</b> : {{ value }}
+    {% endfor %}
+    <br>
+    <br> Predição da sua sobrevivência:
+    <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
