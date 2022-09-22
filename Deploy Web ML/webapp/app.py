@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 
 # Lê modelo usando pickle
-with open(f'model/modelo_final_v2.pkl', 'rb') as f:
+with open(f'model/modelo_final_v3.pkl', 'rb') as f:
     model = pickle.load(f)
 
 app = flask.Flask(__name__, template_folder='templates')
@@ -21,7 +21,11 @@ def main():
         input_variables = pd.DataFrame([[Pclass, Sex]], columns=['Pclass', 'Sex']).astype('int64')
         prediction = model.predict(input_variables)[0]
 
-        return flask.render_template('main.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex}, result=prediction)
+    if prediction == 0:
+        return flask.render_template('main.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex}, result=('Morreu'))
+
+    if prediction == 1:
+        return flask.render_template('main.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex}, result=('Sobreviveu'))
 
 
 if __name__ == '__main__':

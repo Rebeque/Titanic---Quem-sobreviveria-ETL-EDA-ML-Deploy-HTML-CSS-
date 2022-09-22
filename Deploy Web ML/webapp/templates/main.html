@@ -20,12 +20,20 @@
 
 <form action="{{ url_for('main') }}" method="POST">
     <fieldset>
-        <legend>Input values:</legend>
-        Classe de Embarque:
-        <input name="Pclass" type="number" required>
+        <legend>Entrada dos Dados:</legend>
+        <label for="Pclass">Classe do Passageiro</label>
+        <select name="Pclass" type="number" required>
+            <option value="1">1º Classe</option>
+            <option value="2">2º Classe</option>
+            <option value="3">3º Classe</option>
+        </select>
         <br>
-        <br> Sex:
-        <input name="Sex" type="number" required>
+        <br>
+        <label for="Sex">Gênero do Passageiro:</label>
+        <select name="Sex" type="number" required>
+            <option value="10">Masculino</option>
+            <option value="20">Feminino</option>
+        </select>
         <br>
         <br>
         <input type="submit">
@@ -34,10 +42,11 @@
 <br>
 
 <div class="result">
+    <!--
     {% if result %}
     {% for variable, value in original_input.items() %}
     <b>{{ variable }}</b> : {{ value }}
-    {% endfor %}
+    {% endfor %}    -->
     <br>
     <br> Predição da sua sobrevivência:
     <p style="font-size:50px">{{ result }}</p>
