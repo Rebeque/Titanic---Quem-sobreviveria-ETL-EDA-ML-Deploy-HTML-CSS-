@@ -12,7 +12,7 @@ app = flask.Flask(__name__, template_folder='templates')
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if flask.request.method == 'GET':
-        return (flask.render_template('main.html'))
+        return (flask.render_template('index.html'))
 
     if flask.request.method == 'POST':
         Pclass = flask.request.form['Pclass']
@@ -23,10 +23,10 @@ def main():
         prediction = model.predict(input_variables)[0]
 
     if prediction == 0:
-        return flask.render_template('main.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex, 'Estação de Embarque':Embarked}, result=('Morreu'))
+        return flask.render_template('index.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex, 'Estação de Embarque':Embarked}, result=('Esse passageiro morreria... 😥'))
 
     if prediction == 1:
-        return flask.render_template('main.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex, 'Estação de Embarque':Embarked}, result=('Sobreviveu'))
+        return flask.render_template('index.html', original_input={'Classe de Embarque':Pclass, 'Sexo':Sex, 'Estação de Embarque':Embarked}, result=('Esse passageiro sobreviveria! 😌'))
 
 
 if __name__ == '__main__':
